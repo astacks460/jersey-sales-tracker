@@ -178,7 +178,9 @@ export default function SalesPage() {
   
   // Handle discount value change
   const handleDiscountValueChange = (value: string) => {
-    const numValue = parseFloat(value) || 0;
+    // Remove leading zeros and handle empty string
+    const cleanValue = value.replace(/^0+/, '') || '0';
+    const numValue = parseFloat(cleanValue) || 0;
     setDiscountValue(numValue);
     
     if (discountType === "flat") {
@@ -187,7 +189,7 @@ export default function SalesPage() {
       setSalePrice(65 - (65 * (numValue / 100)));
     }
   };
-  
+
   // Complete the sale
   const handleCompleteSale = () => {
     if (!currentItem) return;
@@ -388,14 +390,15 @@ export default function SalesPage() {
                   <Label className="text-body font-semibold">
                     Discount Value ({discountType === "flat" ? "$" : "%"})
                   </Label>
-                  <Input 
-                    type="number"
-                    min="0"
-                    max={discountType === "flat" ? "65" : "100"}
-                    value={discountValue}
-                    onChange={(e) => handleDiscountValueChange(e.target.value)}
-                    className="text-center text-lg h-12 bg-secondary/50"
-                  />
+                <Input 
+                  type="number"
+                  min="0"
+                  max={discountType === "flat" ? "65" : "100"}
+                  value={discountValue === 0 ? '' : discountValue}
+                  onChange={(e) => handleDiscountValueChange(e.target.value)}
+                  className="text-center text-lg h-12 bg-secondary/50"
+                  placeholder="0"
+                />
                 </div>
               )}
               
