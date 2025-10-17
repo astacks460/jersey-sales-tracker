@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { 
   Dialog, 
@@ -60,7 +59,7 @@ export default function SalesPage() {
   // Sale modal state
   const [saleModalOpen, setSaleModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  // const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [currentItem, setCurrentItem] = useState<JerseyItem | null>(null);
   const [salePrice, setSalePrice] = useState(65);
   const [discountType, setDiscountType] = useState<string | null>(null);
@@ -126,7 +125,7 @@ export default function SalesPage() {
   // Handle category selection
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
-    setSelectedSize(null);
+    // setSelectedSize(null);
     setCategoryModalOpen(true);
   };
   

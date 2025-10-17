@@ -55,7 +55,7 @@ export default function SummaryPage() {
       setTotalRevenue(total);
       
       // Calculate payment breakdown
-      const breakdown = parsedSales.reduce((acc: any, sale: Sale) => {
+      const breakdown = parsedSales.reduce((acc: Record<string, number>, sale: Sale) => {
         acc[sale.paymentMethod] = (acc[sale.paymentMethod] || 0) + sale.priceSold;
         return acc;
       }, {
@@ -127,9 +127,6 @@ const handleExport = () => {
     csvContent += "Time,Category,Jersey,Size,Original Price,Discount Type,Discount Value,Final Price,Payment Method\n";
     
     sales.forEach(sale => {
-      const discountInfo = sale.discountType 
-        ? `${sale.discountType === 'flat' ? '$' : '%'}${sale.discountValue}` 
-        : 'None';
       
       const originalPrice = sale.discountType ? 65 : sale.priceSold;
       

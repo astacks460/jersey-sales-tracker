@@ -27,8 +27,14 @@ const jerseyCategories = {
 };
 
 const generateJerseyTypes = () => {
-  const types = [];
-  Object.entries(jerseyCategories).forEach(([categoryName, category]) => {
+  const types: Array<{
+    id: string;
+    design: string;
+    color: string;
+    size: string;
+    category: string;
+    type: string;
+}> = [];  Object.entries(jerseyCategories).forEach(([categoryName, category]) => {
     category.sizes.forEach(size => {
       types.push({
         id: `${category.color}-${size.toLowerCase()}`,
